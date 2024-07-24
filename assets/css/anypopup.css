@@ -34,3 +34,14 @@
 .anypopup-content {
     margin-top: 20px;
 }
+
+.anypopup-content p {
+    margin-bottom: 6px;
+    /* 调整这个值来改变段落间距 */
+}
+
+/* 如果需要，您还可以调整行高 */
+.anypopup-content {
+    line-height: 1.4;
+    /* 调整这个值来改变行高 */
+}

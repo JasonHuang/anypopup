@@ -58,7 +58,29 @@ jQuery(document).ready(function ($) {
             }
         });
     });
-
+    // 添加删除功能
+    $('.delete-popup').on('click', function () {
+        if (confirm('Are you sure you want to delete this popup?')) {
+            var popupId = $(this).data('id');
+            $.ajax({
+                url: anypopup_ajax.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'anypopup_delete',
+                    id: popupId,
+                    nonce: anypopup_ajax.nonce
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // 从表格中移除对应的行
+                        $('tr[data-popup-id="' + popupId + '"]').remove();
+                    } else {
+                        alert('Error deleting popup: ' + response.data);
+                    }
+                }
+            });
+        }
+    });
     // Handle "Select All" option
     $displayPages.on('select2:select', function (e) {
         if (e.params.data.id === 'select-all') {
